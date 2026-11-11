@@ -356,16 +356,6 @@ Las capturas a continuación documentan cada punto obligatorio de la guía. Toda
 9. **Filtro `add`:** Se usa en `detalle.html` para calcular precio con IGV estimado.
 10. **`annotate`/`aggregate`:** Se usan en `home()` para precio promedio, stock total y conteo por categoría.
 
----
 
-## 11. Enlace de GitHub
 
-> [Placeholder] Repositorio pendiente de subida.  
-> Instrucciones de subida en la sección "Entregables – GitHub".
 
----
-
-## 12. Créditos
-
-Desarrollado para la asignatura **ISO93A – Desarrollo de Aplicaciones Web** (UNCP), Semana 11.  
-Tecnologías: Django 5.2, Python 3.14, SQLite, HTML5, CSS3.
