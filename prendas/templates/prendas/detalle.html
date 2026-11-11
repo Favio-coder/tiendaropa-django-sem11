@@ -1,0 +1,25 @@
+{% extends 'prendas/base.html' %}
+
+{% block title %}Detalle - {{ prenda.nombre|title }}{% endblock %}
+
+{% block content %}
+<section class="detalle-prenda">
+    <div class="detalle-info">
+        <h1>{{ prenda.nombre|upper }}</h1>
+        <p><strong>Categoría:</strong> {{ prenda.categoria }}</p>
+        <p><strong>Talla:</strong> {{ prenda.talla }}</p>
+        <p><strong>Color:</strong> {{ prenda.color }}</p>
+        <p><strong>Precio:</strong> S/ {{ prenda.precio|floatformat:2 }}</p>
+        <p><strong>Stock:</strong> {{ prenda.stock }} unidad{{ prenda.stock|pluralize:"s" }}</p>
+        <p><strong>Fecha de ingreso:</strong> {{ prenda.fecha_ingreso|date:"d/m/Y" }}</p>
+        <p><strong>Disponible:</strong>
+            {% if prenda.disponible %}Sí{% elif not prenda.disponible %}No{% else %}No especificado{% endif %}
+        </p>
+        <p><strong>Descripción:</strong> {{ prenda.descripcion|default:"Sin descripción disponible." }}</p>
+        <p><strong>Palabras:</strong> {{ prenda.descripcion|length }}</p>
+    </div>
+    <div class="detalle-acciones">
+        <a href="{% url 'prendas:catalogo' %}" class="btn-volver">← Volver al catálogo</a>
+    </div>
+</section>
+{% endblock %}

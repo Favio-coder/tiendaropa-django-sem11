@@ -1,0 +1,62 @@
+{% extends 'prendas/base.html' %}
+
+{% block title %}Catálogo - Tienda de Ropa{% endblock %}
+
+{% block content %}
+<section class="catalogo-header">
+    <h2>Catálogo de Prendas</h2>
+
+    <form method="get" class="filtros">
+        <label for="categoria">Categoría:</label>
+        <select name="categoria" id="categoria">
+            <option value="">Todas</option>
+            {% for categoria_nombre, categoria_valor in categorias %}
+                <option value="{{ categoria_nombre }}" {% if categoria_actual == categoria_nombre %}selected{% endif %}>
+                    {{ categoria_nombre }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="q">Búsqueda:</label>
+        <input type="text" name="q" id="q" placeholder="Buscar prenda..." value="{{ query_actual|default:'' }}">
+
+        <button type="submit">Filtrar</button>
+        {% if categoria_actual or query_actual %}
+            <a href="{% url 'prendas:catalogo' %}" class="btn-limpiar">Limpiar</a>
+        {% endif %}
+    </form>
+</section>
+
+<section class="grid-prendas">
+    {% for prenda in prendas %}
+        <article class="card-prenda {% cycle 'fila-1' 'fila-2' 'fila-3' 'fila-4' %}">
+            <h3>{{ prenda.nombre|title }}</h3>
+            <p><strong>Categoría:</strong> {{ prenda.categoria }}</p>
+            <p><strong>Talla:</strong> {{ prenda.talla }}</p>
+            <p><strong>Color:</strong> {{ prenda.color }}</p>
+            <p><strong>Precio:</strong> S/ {{ prenda.precio|floatformat:2 }}</p>
+            <p><strong>Stock:</strong> {{ prenda.stock }}{% if prenda.stock <= 5 %} <span class="stock-bajo">¡Stock bajo!</span>{% endif %}</p>
+            <p class="descripcion">{{ prenda.descripcion|truncatewords:15 }}</p>
+            <a href="{% url 'prendas:detalle' prenda.pk %}" class="btn-detalle">Ver detalle</a>
+        </article>
+    {% empty %}
+        <p class="vacío">No se encontraron prendas con los filtros seleccionados.</p>
+    {% endfor %}
+</section>
+
+{% if prendas.has_other_pages %}
+<div class="paginacion">
+    {% if prendas.has_previous %}
+        <a href="?page=1{% if categoria_actual %}&categoria={{ categoria_actual|urlencode }}{% endif %}{% if query_actual %}&q={{ query_actual|urlencode }}{% endif %}">« Primera</a>
+        <a href="?page={{ prendas.previous_page_number }}{% if categoria_actual %}&categoria={{ categoria_actual|urlencode }}{% endif %}{% if query_actual %}&q={{ query_actual|urlencode }}{% endif %}">Anterior</a>
+    {% endif %}
+
+    <span>Página {{ prendas.number }} de {{ prendas.paginator.num_pages }}</span>
+
+    {% if prendas.has_next %}
+        <a href="?page={{ prendas.next_page_number }}{% if categoria_actual %}&categoria={{ categoria_actual|urlencode }}{% endif %}{% if query_actual %}&q={{ query_actual|urlencode }}{% endif %}">Siguiente</a>
+        <a href="?page={{ prendas.paginator.num_pages }}{% if categoria_actual %}&categoria={{ categoria_actual|urlencode }}{% endif %}{% if query_actual %}&q={{ query_actual|urlencode }}{% endif %}">Última »</a>
+    {% endif %}
+</div>
+{% endif %}
+{% endblock %}

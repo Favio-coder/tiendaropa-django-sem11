@@ -1,0 +1,24 @@
+{% extends 'prendas/base.html' %}
+
+{% block title %}Inicio - Tienda de Ropa{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h2>Bienvenido a nuestra tienda de ropa</h2>
+        <p>Descubre las mejores prendas de Huancayo con estilo y calidad.</p>
+        <a href="{% url 'prendas:catalogo' %}" class="btn">Ver Catálogo</a>
+    </div>
+</section>
+
+<section class="stats">
+    <div class="stat-card">
+        <h3>{{ total_prendas }}</h3>
+        <p>Prendas totales</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ prendas_disponibles }}</h3>
+        <p>Disponibles</p>
+    </div>
+</section>
+{% endblock %}
