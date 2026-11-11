@@ -273,22 +273,73 @@ Prenda.objects.aggregate(total=Sum('stock'))
 
 ---
 
-## 9. Evidencias
+## 9. Evidencias Visuales
 
-Las capturas se encuentran en la carpeta `capturas/` y documentan cada punto obligatorio de la guía:
+Las capturas a continuación documentan cada punto obligatorio de la guía. Todas las imágenes están guardadas en la carpeta `capturas/`.
 
-| Archivo | Descripción |
-|---------|-------------|
-| `capturas/01_check.png` | Resultado de `python manage.py check` (0 issues) |
-| `capturas/02_migraciones.png` | Migraciones ejecutadas correctamente (`migrate`) |
-| `capturas/03_datos.png` | Comando `poblar_prendas` ejecutado (12 prendas insertadas) |
-| `capturas/04_pruebas.png` | 13 pruebas unitarias exitosas (`test prendas`) |
-| `capturas/05_inicio.png` | Página de inicio (`/`) |
-| `capturas/06_catalogo.png` | Catálogo de prendas (`/catalogo/`) |
-| `capturas/07_filtro_categoria.png` | Catálogo filtrado por categoría (`?categoria=Polos`) |
-| `capturas/08_busqueda.png` | Búsqueda por nombre (`?q=casaca`) |
-| `capturas/09_detalle.png` | Detalle de una prenda (`/prenda/1/`) |
-| `capturas/10_admin.png` | Panel administrativo (`/admin/`) |
+### 9.1. Verificación de configuración
+
+**Figura 1.** Resultado de `python manage.py check` — sin errores detectados.
+
+![01_check - resultado de manage.py check](capturas/01_check.png)
+
+### 9.2. Migraciones
+
+**Figura 2.** Migraciones ejecutadas correctamente con `python manage.py migrate`.
+
+![02_migraciones - migraciones aplicadas](capturas/02_migraciones.png)
+
+### 9.3. Población de datos
+
+**Figura 3.** Comando `python manage.py poblar_prendas` ejecutado — 12 prendas insertadas en SQLite.
+
+![03_datos - comando poblar_prendas](capturas/03_datos.png)
+
+### 9.4. Pruebas unitarias
+
+**Figura 4.** 13 pruebas unitarias ejecutadas con `python manage.py test prendas` — todas exitosas.
+
+![04_pruebas - tests OK](capturas/04_pruebas.png)
+
+### 9.5. Página de inicio
+
+**Figura 5.** Página de inicio (`/`) renderizada con la vista `home()` (FBV).
+
+![05_inicio - página principal](capturas/05_inicio.png)
+
+### 9.6. Catálogo de prendas
+
+**Figura 6.** Catálogo de prendas (`/catalogo/`) renderizado con `PrendaListView` (CBV ListView) con paginación y filtros.
+
+![06_catalogo - listado de prendas](capturas/06_catalogo.png)
+
+### 9.7. Filtrado por categoría
+
+**Figura 7.** Catálogo filtrado por categoría (`?categoria=Polos`) mostrando solo prendas de ese tipo.
+
+![07_filtro_categoria - filtro por categoría](capturas/07_filtro_categoria.png)
+
+### 9.8. Búsqueda por nombre
+
+**Figura 8.** Búsqueda en el catálogo (`?q=casaca`) usando el filtro `buscar()` del `PrendaQuerySet`.
+
+![08_busqueda - búsqueda por nombre](capturas/08_busqueda.png)
+
+### 9.9. Detalle de una prenda
+
+**Figura 9.** Detalle de una prenda individual (`/prenda/1/`) renderizado con `PrendaDetailView` (CBV DetailView).
+
+![09_detalle - detalle de prenda](capturas/09_detalle.png)
+
+### 9.10. Panel administrativo
+
+**Figura 10.** Panel de administración de Django (`/admin/`) con el modelo `Prenda` registrado.
+
+![10_admin - panel administrativo](capturas/10_admin.png)
+
+---
+
+> **Nota:** Todas las capturas fueron generadas con navegador real (Playwright + Chromium) apuntando al servidor local `http://127.0.0.1:8000/`, ejecutando el proyecto en entorno virtual con Django 5.2 y SQLite.
 
 ---
 
