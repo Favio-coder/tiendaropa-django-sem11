@@ -1,0 +1,13 @@
+{% extends 'prendas/base.html' %}
+
+{% block title %}Página no encontrada - Tienda de Ropa{% endblock %}
+
+{% block content %}
+<section class="error-404">
+    <div class="error-content">
+        <h1>404</h1>
+        <p>La página que buscas no existe.</p>
+        <a href="{% url 'prendas:home' %}" class="btn">Volver al inicio</a>
+    </div>
+</section>
+{% endblock %}

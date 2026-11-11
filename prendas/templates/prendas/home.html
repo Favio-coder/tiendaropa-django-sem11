@@ -20,5 +20,28 @@
         <h3>{{ prendas_disponibles }}</h3>
         <p>Disponibles</p>
     </div>
+    <div class="stat-card">
+        <h3>{{ prendas_stock_bajo }}</h3>
+        <p>Stock bajo (≤5)</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ precio_promedio|floatformat:2 }}</h3>
+        <p>Precio promedio</p>
+    </div>
+    <div class="stat-card">
+        <h3>{{ stock_total|default:0 }}</h3>
+        <p>Stock total</p>
+    </div>
+</section>
+
+<section class="resumen-categorias">
+    <h3>Resumen por categoría</h3>
+    <ul>
+        {% for item in categorias_con_conteo %}
+            <li>{{ item.categoria }}: {{ item.total }} prenda{{ item.total|pluralize:"s" }}</li>
+        {% empty %}
+            <li>Sin categorías registradas.</li>
+        {% endfor %}
+    </ul>
 </section>
 {% endblock %}
